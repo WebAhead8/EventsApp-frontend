@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import '../Style/SignUp.css';
 import passwordValidationFunction from "../helperFunction/passwordValidation";
 import emailValidationFunction from "../helperFunction/emailValidation";
+import { signupFetch } from "../Fetches/signUpFetches";
 // import { useHistory } from "react-router-dom";
 
 function SignUp() {
@@ -21,12 +22,35 @@ function SignUp() {
   const [passwordValidation, setPasswordValidation] = React.useState("");
   const [SecondPassword, setSecondPassword] = React.useState("");
   const [confirmPasswordValidation, setConfirmPasswordValidation] = React.useState("");
+  const [signupValidation, setSignupValidation] = React.useState(true);
+
   // const history = useHistory();
 
-  const finalData = { firstName: Fname, lastName: Lname, email: Email, birthday: Date, phoneNumber: Phone, password: FirstPassword }
 
-  console.log(JSON.stringify(finalData))
 
+
+  const signUpHandler = e => {
+    const finalData = { firstName: Fname, lastName: Lname, email: Email, birthday: Date, phoneNumber: Phone, password: FirstPassword }
+    if (
+      emailValidation ||
+      firstNameValidation ||
+      lastNameValidation ||
+      passwordValidation ||
+      confirmPasswordValidation
+    ) {
+      console.log("NOT valid");
+      setSignupValidation(false);
+    } else {
+
+      setSignupValidation(true);
+      signupFetch(finalData)
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+        }).catch(err => console.log(err));
+
+    }
+  }
 
 
   const firstNameHandler = (e) => {
@@ -109,7 +133,7 @@ function SignUp() {
   return (
     <>
       <h1 className="h1">Sign Up</h1>
-      <form className="signUpForm">
+      <form className="signUpForm" onSubmit={signUpHandler}>
         <label htmlFor="Fname">First Name :</label>
         <input type="text" onChange={(e) => firstNameHandler(e)} value={Fname} className={firstNameValidation} placeholder="First Name"></input>
 
@@ -140,6 +164,8 @@ function SignUp() {
 
         <label htmlFor="SecondPassword">Password :</label>
         <input type="password" onChange={(e) => confirmPasswordHandler(e)} value={SecondPassword} className={confirmPasswordValidation} placeholder="Confirm password"></input>
+
+        {!signupValidation ? <label className="errorLabel">check all the feilds</label> : ""}
 
         <div className="buttons">
           <input type="submit" value="Signup" className="SignupButton"></input>
