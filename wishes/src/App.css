@@ -1,7 +1,7 @@
 html{
-  background-image: url('./img/background.png');
+  background: rgb(154,182,255);
+  background: radial-gradient(circle, rgba(154,182,255,1) 0%, rgba(4,102,255,1) 100%, rgba(22,74,84,1) 360%);
 }
-
 .App {
   text-align: center;
 }

@@ -3,13 +3,16 @@
   flex-direction: column;
   width: 50%;
   margin: auto;
-  padding-left: 100px;
   max-width: 500px;
+  border-radius: 5%; 
+  border: 3px solid rgb(255, 255, 255);
+justify-content: center;
+align-items: center;
+padding-bottom: 50px;
 }
 
 .loginForm > h1 {
   color: #73aaeb;
-  margin: auto;
 }
 .loginForm > label {
     margin-top: 30px;
@@ -17,6 +20,8 @@
     font-style: normal;
     font-weight: 400;
     color: #e6fff9;
+    align-self: start;
+    margin-left: 25px;
   }
 
   
@@ -31,7 +36,6 @@
 
 .loginForm > #LoginButton
 {
-    margin: auto;
     margin-top: 40px;
 
     width: 321px;
@@ -43,10 +47,10 @@ border-radius: 9px;
 .inputLabel{
 display: flex;
 flex-direction: row;
+width: 100%;
 }
 .loginForm span{
     width: 25px;
-    margin: auto;
     height: 25px;
 
 
@@ -57,7 +61,6 @@ flex-direction: row;
     border-radius: 9px;
     width: 138px;
     height: 25px;
-margin: auto;
 margin-top: 50px;
 }
 
@@ -71,8 +74,7 @@ margin-top: 50px;
 
   .loginForm > #LoginButton
 {
-    margin: auto;
-    margin-top: 40px;
+      margin-top: 40px;
 
     width: 200px;
 

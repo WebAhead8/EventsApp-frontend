@@ -5,7 +5,7 @@ import '../Style/SignUp.css';
 import passwordValidationFunction from "../helperFunction/passwordValidation";
 import emailValidationFunction from "../helperFunction/emailValidation";
 import { signupFetch } from "../Fetches/signUpFetches";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function SignUp() {
 
@@ -25,7 +25,7 @@ function SignUp() {
   const [signupValidation, setSignupValidation] = React.useState(true);
   const [emailExist, setEmailExist] = React.useState(false);
 
-  // const history = useHistory();
+  const history = useHistory();
 
 
 
@@ -104,7 +104,8 @@ setEmailExist(false)
   const DateHandler = (e) => {
     let theDate = e.target.value;
     theDate = theDate.replaceAll("-", "/");
-    setDate(theDate);
+    const newDate=theDate.charAt(8)+theDate.charAt(9)+"/"+theDate.charAt(5)+theDate.charAt(6)+"/"+theDate.charAt(0)+theDate.charAt(1)+theDate.charAt(2)+theDate.charAt(3);
+    setDate(newDate);
   };
 
   const passwordHandler = (e) => {
@@ -156,14 +157,14 @@ setEmailExist(false)
         <label htmlFor="Phone">Phone :</label>
         <input required type="text" onChange={(e) => phoneNumberHandler(e)} value={Phone} className={phoneNumberValidation} placeholder="Phone"></input>
 
-        <label htmlFor="Date">Date :</label>
+        <label htmlFor="Date">Date of birth :</label>
         <TextField
           id="date"
-          label="Birthday"
           type="date"
           defaultValue="2017-05-24"
           onChange={DateHandler}
           className={classes.textField}
+          // id="TextField"
           InputLabelProps={{
             shrink: true,
           }}
@@ -179,8 +180,8 @@ setEmailExist(false)
         {emailExist ? <label className="errorLabel">emai already exist</label> : ""}
 
         <div className="buttons">
-          <input type="submit" value="Signup" className="SignupButton"></input>
-          <span   className="LoginButton" ><a href="/">Login</a></span>
+          <input type="submit" value="SignUp" className="SignupButton"></input>
+          <button type="button" className="LoginButton" onClick={(e) => { history.push('/') }}>Login</button>
         </div>
       </form>
     </>
@@ -188,6 +189,5 @@ setEmailExist(false)
 
 }
 
-// onClick={(e) => { history.push('/') }}
 
 export default SignUp;
