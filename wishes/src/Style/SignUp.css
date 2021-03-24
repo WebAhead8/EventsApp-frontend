@@ -2,27 +2,36 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #73aaeb;
+
 }
 
 
 .signUpForm {
   display: flex;
   flex-direction: column;
-  width: 300px;
-  border: 3px solid rgb(255, 255, 255);
-  padding: 0px 30px 10px 30px;
+  width: 400px;
+  border: 3px solid black;
+  /* padding: 0px 30px 10px 30px; */
   font-weight: 1000;
   font-size: x-large;
   margin: auto;   
-  border-radius: 5%;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5%; 
+   border: 3px solid rgb(255, 255, 255);
+padding-bottom: 20px;
+
 }
 
 
 .signUpForm>label {
   display: flex;
-  flex-direction: column;
+
   margin: 5px 0px 5px 0px;
   width: 100%;
+  color: #FFFFFF;
+  font-size: medium;
 }
 
 .signUpForm>input {
@@ -32,12 +41,9 @@
   color: rgb(0, 0, 0);
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 600px) {
   .signUpForm {
-      width: 100%;
-      padding: 0px 0px 0px 0px;
-      align-items: center;
-      margin: 0px;
+    width: 90%;
   }
 }
 
@@ -75,6 +81,8 @@ display: none;
 .SignupButton{
   height: 30px;
   border-radius: 9px;
+  margin-top: 30px;
+
 }
 
 .LoginButton{
@@ -82,8 +90,14 @@ display: none;
   width: 57px; ;
   background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #FAEA9A;
   border-radius: 9px;
+  color: black;
+  font-size: 17px;
+  align-content: center;
+  font-size: 15px;
+  margin-top: 30px;
 }
 
 #date{
   color: #000000;
 }
+

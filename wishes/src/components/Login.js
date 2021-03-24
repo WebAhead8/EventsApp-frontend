@@ -5,9 +5,12 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faKey } from "@fortawesome/free-solid-svg-icons";
 import "../Style/Login.css";
 import { loginFetch } from "../Fetches/loginFetch";
+import { useHistory } from "react-router-dom";
+
 require('dotenv').config()
 
 function Login(props) {
+  const history = useHistory();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [errorViseble, setErrorViseble] = React.useState(false);
@@ -26,8 +29,6 @@ function Login(props) {
 
     loginFetch(email,password).then(res=>res.json())
     .then(token=>{
-        console.log("token")
-        console.log(token)
         if(token.error)
         {
             setErrorViseble(true)
@@ -75,8 +76,8 @@ function Login(props) {
       </button>
 
 
-      <button type="submit" value="Login" id="signUpButton">
-        Login <FontAwesomeIcon icon={faSignInAlt} />
+      <button  type="button" value="SignUp" id="signUpButton" onClick={(e) => { history.push('/signup') }} >
+        SignUp <FontAwesomeIcon icon={faSignInAlt} />
       </button>
 
       {errorViseble? <label className="errorLabel">invalid email or password</label>:""}
