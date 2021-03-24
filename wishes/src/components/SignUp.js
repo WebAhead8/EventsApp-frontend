@@ -146,14 +146,14 @@ function SignUp() {
         <label htmlFor="Phone">Phone :</label>
         <input type="text" onChange={(e) => phoneNumberHandler(e)} value={Phone} className={phoneNumberValidation} placeholder="Phone"></input>
 
-        <label htmlFor="Date">Date :</label>
+        <label htmlFor="Date">Date of birth :</label>
         <TextField
           id="date"
-          label="Birthday"
           type="date"
           defaultValue="2017-05-24"
           onChange={DateHandler}
           className={classes.textField}
+          // id="TextField"
           InputLabelProps={{
             shrink: true,
           }}
