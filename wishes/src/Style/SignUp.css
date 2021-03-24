@@ -1,0 +1,84 @@
+.h1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  border: 3px solid black;
+  padding: 0px 30px 10px 30px;
+  font-weight: 1000;
+  font-size: x-large;
+  margin: auto;   
+}
+
+
+.signUpForm>label {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0px 5px 0px;
+  width: 100%;
+}
+
+.signUpForm>input {
+  margin: 10px 0px 0px 0px;
+  height: 25px;
+  background:#FFFFFF;
+  color: rgb(0, 0, 0);
+}
+
+@media only screen and (max-width: 400px) {
+  .signUpForm {
+      width: 100%;
+      padding: 0px 0px 0px 0px;
+      align-items: center;
+      margin: 0px;
+  }
+}
+
+.aLink {
+  color: blue;
+  font-size: large;
+  margin-top: 20px;
+}
+
+.errorLabel{
+  color: rgb(248, 81, 81);
+  font-size: small;
+  font-weight: 300;
+}
+.errorField{
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+}
+.hide{
+display: none;
+}
+.error{
+  border: red 2px solid;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.SignupButton{
+  height: 30px;
+  border-radius: 9px;
+}
+
+.LoginButton{
+  height: 30px;
+  width: 57px; ;
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #FAEA9A;
+  border-radius: 9px;
+}
