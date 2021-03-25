@@ -1,14 +1,13 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import '../Style/SignUp.css';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import "../Style/SignUp.css";
 import passwordValidationFunction from "../helperFunction/passwordValidation";
 import emailValidationFunction from "../helperFunction/emailValidation";
 import { signupFetch } from "../Fetches/signUpFetches";
 import { useHistory } from "react-router-dom";
 
 function SignUp() {
-
   const [Fname, setFname] = React.useState("");
   const [firstNameValidation, setFirstNameValidation] = React.useState("");
   const [Lname, setLname] = React.useState("");
@@ -21,19 +20,26 @@ function SignUp() {
   const [FirstPassword, setFirstPassword] = React.useState("");
   const [passwordValidation, setPasswordValidation] = React.useState("");
   const [SecondPassword, setSecondPassword] = React.useState("");
-  const [confirmPasswordValidation, setConfirmPasswordValidation] = React.useState("");
+  const [
+    confirmPasswordValidation,
+    setConfirmPasswordValidation,
+  ] = React.useState("");
   const [signupValidation, setSignupValidation] = React.useState(true);
   const [emailExist, setEmailExist] = React.useState(false);
 
   const history = useHistory();
 
+  const signUpHandler = (e) => {
+    e.preventDefault();
 
-
-
-  const signUpHandler = e => {
-      e.preventDefault();
-
-    const finalData = { firstName: Fname, lastName: Lname, email: Email, birthday: Date, phoneNumber: Phone, password: FirstPassword }
+    const finalData = {
+      firstName: Fname,
+      lastName: Lname,
+      email: Email,
+      birthday: Date,
+      phoneNumber: Phone,
+      password: FirstPassword,
+    };
     if (
       emailValidation ||
       firstNameValidation ||
@@ -44,24 +50,20 @@ function SignUp() {
       console.log("NOT valid");
       setSignupValidation(false);
     } else {
-
       setSignupValidation(true);
       signupFetch(finalData)
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-          if(data.error)
-          {
-setEmailExist(true)
-          }else{
-setEmailExist(false)
-
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.error) {
+            setEmailExist(true);
+          } else {
+            setEmailExist(false);
           }
-        }).catch(err => console.log(err));
-
+        })
+        .catch((err) => console.log(err));
     }
-  }
-
+  };
 
   const firstNameHandler = (e) => {
     setFname(e.target.value);
@@ -100,11 +102,20 @@ setEmailExist(false)
     }
   };
 
-
   const DateHandler = (e) => {
     let theDate = e.target.value;
     theDate = theDate.replaceAll("-", "/");
-    const newDate=theDate.charAt(8)+theDate.charAt(9)+"/"+theDate.charAt(5)+theDate.charAt(6)+"/"+theDate.charAt(0)+theDate.charAt(1)+theDate.charAt(2)+theDate.charAt(3);
+    const newDate =
+      theDate.charAt(8) +
+      theDate.charAt(9) +
+      "/" +
+      theDate.charAt(5) +
+      theDate.charAt(6) +
+      "/" +
+      theDate.charAt(0) +
+      theDate.charAt(1) +
+      theDate.charAt(2) +
+      theDate.charAt(3);
     setDate(newDate);
   };
 
@@ -126,11 +137,10 @@ setEmailExist(false)
     }
   };
 
-
   const useStyles = makeStyles((theme) => ({
     container: {
-      display: 'flex',
-      flexWrap: 'wrap',
+      display: "flex",
+      flexWrap: "wrap",
     },
     textField: {
       marginLeft: theme.spacing(1),
@@ -146,16 +156,44 @@ setEmailExist(false)
       <h1 className="h1">Sign Up</h1>
       <form className="signUpForm" onSubmit={signUpHandler}>
         <label htmlFor="Fname">First Name :</label>
-        <input required type="text" onChange={(e) => firstNameHandler(e)} value={Fname} className={firstNameValidation} placeholder="First Name"></input>
+        <input
+          required
+          type="text"
+          onChange={(e) => firstNameHandler(e)}
+          value={Fname}
+          className={firstNameValidation}
+          placeholder="First Name"
+        ></input>
 
         <label htmlFor="Lname">Last Name :</label>
-        <input required type="text" onChange={(e) => lastNameHandler(e)} value={Lname} className={lastNameValidation} placeholder="Last Name"></input>
+        <input
+          required
+          type="text"
+          onChange={(e) => lastNameHandler(e)}
+          value={Lname}
+          className={lastNameValidation}
+          placeholder="Last Name"
+        ></input>
 
         <label htmlFor="Email">Email :</label>
-        <input required type="email" onChange={(e) => emailHandler(e)} value={Email} className={emailValidation} placeholder="Email"></input>
+        <input
+          required
+          type="email"
+          onChange={(e) => emailHandler(e)}
+          value={Email}
+          className={emailValidation}
+          placeholder="Email"
+        ></input>
 
         <label htmlFor="Phone">Phone :</label>
-        <input required type="text" onChange={(e) => phoneNumberHandler(e)} value={Phone} className={phoneNumberValidation} placeholder="Phone"></input>
+        <input
+          required
+          type="text"
+          onChange={(e) => phoneNumberHandler(e)}
+          value={Phone}
+          className={phoneNumberValidation}
+          placeholder="Phone"
+        ></input>
 
         <label htmlFor="Date">Date of birth :</label>
         <TextField
@@ -171,23 +209,50 @@ setEmailExist(false)
         />
 
         <label htmlFor="FirstPassword">Password :</label>
-        <input required type="password" onChange={(e) => passwordHandler(e)} value={FirstPassword} className={passwordValidation} placeholder="Password"></input>
+        <input
+          required
+          type="password"
+          onChange={(e) => passwordHandler(e)}
+          value={FirstPassword}
+          className={passwordValidation}
+          placeholder="Password"
+        ></input>
 
         <label htmlFor="SecondPassword">Password :</label>
-        <input type="password" onChange={(e) => confirmPasswordHandler(e)} value={SecondPassword} className={confirmPasswordValidation} placeholder="Confirm password"></input>
+        <input
+          type="password"
+          onChange={(e) => confirmPasswordHandler(e)}
+          value={SecondPassword}
+          className={confirmPasswordValidation}
+          placeholder="Confirm password"
+        ></input>
 
-        {!signupValidation ? <label className="errorLabel">check all the feilds</label> : ""}
-        {emailExist ? <label className="errorLabel">emai already exist</label> : ""}
+        {!signupValidation ? (
+          <label className="errorLabel">check all the feilds</label>
+        ) : (
+          ""
+        )}
+        {emailExist ? (
+          <label className="errorLabel">emai already exist</label>
+        ) : (
+          ""
+        )}
 
         <div className="buttons">
           <input type="submit" value="SignUp" className="SignupButton"></input>
-          <button type="button" className="LoginButton" onClick={(e) => { history.push('/') }}>Login</button>
+          <button
+            type="button"
+            className="LoginButton"
+            onClick={(e) => {
+              history.push("/");
+            }}
+          >
+            Login
+          </button>
         </div>
       </form>
     </>
-  )
-
+  );
 }
-
 
 export default SignUp;

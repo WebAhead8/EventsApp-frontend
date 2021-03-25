@@ -1,0 +1,107 @@
+.tableDiv{
+    width: 600px;
+    margin: auto;
+    margin-top: 20px;
+    max-height: 600px;
+    overflow-y: scroll;
+}
+.tableDiv tbody>tr {
+    cursor: pointer;
+}
+.searchForm{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    margin-bottom: 20px;
+    height: 35px;
+}
+
+.searchForm > input[type=text]{
+    width: 100%;
+    border-radius: 5px;
+
+}
+.searchForm > input[type=submit]
+{
+    background-color: #A2FAE5;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 5px;
+}
+
+.searchForm > img {
+    height: 100%;
+    margin-right: 6px;
+}
+
+@media only screen and (max-width: 600px) {
+    .tableDiv{
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #00d9ff; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(11, 0, 167); 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(14, 0, 145); 
+  }
+
+  .filterDiv
+  {
+      background-color:#73AAEB;
+      border: black 2px solid;
+      position: fixed;
+      width: 300px;
+      height: 200px;
+      z-index: 2;
+      left: 50%;
+      transform: translate(-50%, 0);
+      top: 20%;
+      display: flex;
+      flex-direction: column;
+  }
+  .filterDiv > img{
+      width: 30px;
+      align-self: flex-end;
+      margin: 3px;
+  }
+  .filterDiv > div{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+}
+.filterDiv > div>select{
+    width: 70%;
+    margin: 3px;
+
+}
+
+.filterDiv button{
+    background-color: #A2FAE5;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 5px;
+  
+}
+
+.filterDiv input[type=checkbox]{
+    margin-top: 10px;
+    margin-left: 10px;
+}
