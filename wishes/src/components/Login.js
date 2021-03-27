@@ -6,6 +6,8 @@ import { faKey } from "@fortawesome/free-solid-svg-icons";
 import "../Style/Login.css";
 import { loginFetch } from "../Fetches/loginFetch";
 import { useHistory } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
+
 
 require('dotenv').config()
 
@@ -14,6 +16,16 @@ function Login(props) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [errorViseble, setErrorViseble] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+  
+
+React.useEffect(()=>{
+  if(localStorage.getItem("user"))
+  {
+    history.push('/events')
+  }
+},[])
+
 
   const emailHandler = (e) => {
     setEmail(e.target.value);
@@ -25,14 +37,24 @@ function Login(props) {
 
   const loginHandler=(e)=>{
     e.preventDefault();
-    
+    setLoading(true)
 
     loginFetch(email,password).then(res=>res.json())
     .then(token=>{
         if(token.error)
         {
             setErrorViseble(true)
-        }else{setErrorViseble(false)}
+    setLoading(false)
+
+        }else{
+          
+          setErrorViseble(false)
+    setLoading(false)
+
+          localStorage.setItem("user",token.access_token)
+          history.push('/events')
+
+        }
     })
     .catch(err=>{
         console.log("err")
@@ -81,6 +103,8 @@ function Login(props) {
       </button>
 
       {errorViseble? <label className="errorLabel">invalid email or password</label>:""}
+      {loading?<div><Spinner animation="grow" size="sm"/><Spinner animation="grow" size="sm"/><Spinner animation="grow" size="sm"/></div>:"" }
+      
     </form>
   );
 }

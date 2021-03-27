@@ -6,8 +6,12 @@ import passwordValidationFunction from "../helperFunction/passwordValidation";
 import emailValidationFunction from "../helperFunction/emailValidation";
 import { signupFetch } from "../Fetches/signUpFetches";
 import { useHistory } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
+
 
 function SignUp() {
+  const [loading, setLoading] = React.useState(false);
+
   const [Fname, setFname] = React.useState("");
   const [firstNameValidation, setFirstNameValidation] = React.useState("");
   const [Lname, setLname] = React.useState("");
@@ -27,11 +31,11 @@ function SignUp() {
   const [signupValidation, setSignupValidation] = React.useState(true);
   const [emailExist, setEmailExist] = React.useState(false);
 
+
   const history = useHistory();
 
   const signUpHandler = (e) => {
     e.preventDefault();
-
     const finalData = {
       firstName: Fname,
       lastName: Lname,
@@ -50,18 +54,27 @@ function SignUp() {
       console.log("NOT valid");
       setSignupValidation(false);
     } else {
+setLoading(true);
+
       setSignupValidation(true);
       signupFetch(finalData)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.error) {
             setEmailExist(true);
+setLoading(false);
+
+
           } else {
             setEmailExist(false);
+            setLoading(false);
+            localStorage.setItem("user",data.access_token)
+            history.push("/")
+
           }
         })
         .catch((err) => console.log(err));
+
     }
   };
 
@@ -250,6 +263,8 @@ function SignUp() {
             Login
           </button>
         </div>
+      {loading?<div><Spinner animation="grow" size="sm"/><Spinner animation="grow" size="sm"/><Spinner animation="grow" size="sm"/></div>:"" }
+
       </form>
     </>
   );
