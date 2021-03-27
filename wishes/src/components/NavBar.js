@@ -14,6 +14,8 @@ import EventIcon from '@material-ui/icons/Event';
 import HomeIcon from '@material-ui/icons/Home';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { useHistory } from "react-router-dom";
+
 
 const useStyles = makeStyles((theme) => ({
 
@@ -81,6 +83,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PrimarySearchAppBar() {
+  const history = useHistory();
+
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -92,6 +96,11 @@ export default function PrimarySearchAppBar() {
     setAnchorEl(event.currentTarget);
   };
 
+  const logoutHandler=(e)=>{
+localStorage.removeItem("user")
+history.push("/")
+  }
+
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
@@ -99,6 +108,9 @@ export default function PrimarySearchAppBar() {
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
+    
+ 
+
   };
 
   const handleMobileMenuOpen = (event) => {
@@ -116,7 +128,7 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Logout <ExitToAppIcon/> </MenuItem>
+      <MenuItem onClick={logoutHandler}>Logout <ExitToAppIcon/> </MenuItem>
     </Menu>
   );
 
@@ -134,9 +146,9 @@ export default function PrimarySearchAppBar() {
     >
 
 <MenuItem>
-        <IconButton color="inherit">
+        <IconButton color="inherit" onClick={e=>{history.push('/events')}}>
 
-            <EventIcon />
+            <EventIcon  />
 
         </IconButton>
         <p>Events</p>
@@ -179,7 +191,7 @@ export default function PrimarySearchAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+            Events&Wishes
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -201,7 +213,7 @@ export default function PrimarySearchAppBar() {
             <IconButton  color="inherit">
                 <HomeIcon />
             </IconButton>
-            <IconButton  color="inherit">
+            <IconButton  color="inherit" onClick={e=>{history.push('/events')}}>
                 <EventIcon />
             </IconButton>
             <IconButton

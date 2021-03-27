@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   color: #73aaeb;
+  color: #016ff5;
 
 }
 
@@ -39,6 +40,7 @@ padding-bottom: 20px;
   height: 25px;
   background:#ffffff;
   color: rgb(0, 0, 0);
+  font-size: medium;
 }
 
 @media only screen and (max-width: 600px) {
@@ -82,6 +84,7 @@ display: none;
   height: 30px;
   border-radius: 9px;
   margin-top: 30px;
+  font-size: medium;
 
 }
 

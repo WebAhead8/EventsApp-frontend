@@ -1,11 +1,15 @@
 import React from "react";
-import { Table } from "react-bootstrap";
+import { Table,Spinner } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Style/Events.css";
 import NavBar from "./NavBar";
 import Filter from "./FilterPopUp";
 import {getAllEvents} from "../Fetches/getAllEvents";
+import { useHistory } from "react-router-dom";
+
 function Events(props) {
+  const history = useHistory();
+
   const[eventsArr,setEventArr]=React.useState([])
   const[tableRows,setTableRows]=React.useState([])
   const [CategoryFilter, setCategory] = React.useState("All");
@@ -18,6 +22,15 @@ function Events(props) {
 
 
   React.useEffect(()=>{
+    if(!localStorage.getItem("user"))
+    {
+      history.push('/')
+    }
+  },[])
+  
+
+  React.useEffect(()=>{
+
     getAllEvents().then(res=>res.json())
     .then(data=>{
       if(!data.status)
@@ -73,11 +86,11 @@ if(eventsArr.length > 0)
         )
       })
     .map((event,i)=>{
-return(<tr key={i}>
+return(<tr key={i} onClick={e=>{history.push('/events/'+event._id)}}>
   <td>{i+1}</td>
   <td>{event.title}</td>
   <td>{event.date}</td>
-  {event.owner.length>0 ?<td>{event.owner[0].firstName}</td>:<td>no Owner</td> }
+  {event.owner.length>0 ?<td>{event.owner[0].firstName+ " "+event.owner[0].lastName}</td>:<td>no Owner</td> }
   
 </tr>)
     })
@@ -134,10 +147,13 @@ return(<tr key={i}>
             </tr>
           </thead>
           <tbody>
-          {tableRows?tableRows:""}
+
+          {tableRows.length===0&&eventsArr.length>0?"no event match":tableRows}
           </tbody>
         </Table>
       </div>
+      {eventsArr.length>0?"":<div><Spinner animation="grow" /><Spinner animation="grow" /><Spinner animation="grow" /></div>}
+
     </div>
   );
 }

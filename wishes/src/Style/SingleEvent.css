@@ -1,0 +1,138 @@
+.mainSingleEventDiv{
+    display: flex;
+    flex-direction: column;
+}
+.eventDiv{
+    display: flex;
+    flex-direction: column;
+background-color:#6784eb;
+width: 500px;
+height: fit-content;
+border-radius: 30px;
+box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
+border-radius: 30px;
+margin: auto;
+padding: 20px;
+margin-top: 30px;
+
+
+}
+.eventDiv > .eventLabel{
+    background-color: bisque;
+}
+.eventDiv img {
+    width: 100%;
+    margin-top: 10px;
+max-height: 200px;
+object-fit:contain
+
+
+}
+#info {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+#info > label {
+    width: 90%;
+    background-color: bisque;
+    border-radius: 7px;
+    margin: 10px;
+box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.25);
+
+}
+.eventInformationDiv{
+    display: flex;
+    flex-direction: row;
+}
+#eventPhoto{
+    width: 50%;
+    padding: 10px;
+}
+
+.divDescription > p{
+    background: #E6FFF9;
+    box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    padding: 10px;
+    text-align: left;
+    min-height: 100px;
+}
+
+.WishesDiv  {
+justify-content:center;
+padding: 50px;
+display: flex;
+flex-direction: row;
+
+flex-wrap: wrap;
+}
+.WishesDiv >.wish{
+    width: 200px;
+    background: #dee5ff;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
+    max-height: 400px;
+
+overflow-y: auto;
+
+}
+
+.wish > img {
+    width: 100%;
+    max-height: 150px;
+    object-fit:scale-down
+
+}
+.wish > .wishSender {
+    background-color: bisque;
+    border-radius: 7px;
+    padding: 5px;
+    margin-top: 10px;
+    align-self: flex-start;
+box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.25);
+
+
+}
+.wish > p {
+    padding: 5px;
+    background: #E6FFF9;
+box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.25);
+border-radius: 15px;    
+text-align: left;
+
+}
+
+
+.viewEvent{
+    position: fixed;
+background-color:#496DEF;
+width:600px
+}
+
+@media only screen and (max-width: 530px) {
+    .eventDiv
+{
+    width: 100%;
+}
+.WishesDiv{
+    padding: 5px;
+
+}
+.WishesDiv >.wish
+{
+    width: 100%;
+    margin-bottom: 5px;
+
+}
+}
+.spinner{
+    margin-top: 10%;
+
+}
