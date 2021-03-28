@@ -136,3 +136,13 @@ width:600px
     margin-top: 10%;
 
 }
+.addWishIconDiv{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.addWishIconDiv > img {
+    width :35px
+}

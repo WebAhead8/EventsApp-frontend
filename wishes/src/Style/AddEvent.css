@@ -1,0 +1,65 @@
+.AddEventForm{
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  font-weight: 1000;
+  font-size: x-large;
+  margin: auto;  
+  margin-top: 40px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5%; 
+  border: 3px solid rgb(255, 255, 255);
+  padding-bottom: 20px;
+}
+
+.img{
+  display: flex;
+  flex-direction: row;
+  font-size: medium;
+}
+
+.imgInput{
+  width: 280px;
+  
+}
+
+.uploadImg{
+  margin-left: 12px;
+  border-radius: 5px;
+}
+
+.AddEventForm > label{
+  display: flex;
+  margin: 5px 0px 5px 0px;
+  width: 100%;
+  color: #FFFFFF;
+  font-size: medium;
+}
+
+.AddEventForm>input {
+  margin: 10px 0px 0px 0px;
+  height: 40px;
+  background:#ffffff;
+  color: rgb(0, 0, 0);
+  font-size: medium;
+  border-radius: 9px;
+}
+
+@media only screen and (max-width: 600px) {
+  .signUpForm {
+    width: 90%;
+  }
+}
+
+.AddEventClass{
+  border-radius: 9px;
+  width: 140px;
+}
+
+.Description{
+  max-height: 200px;
+  min-height: 200px;
+  overflow-y: auto;
+}

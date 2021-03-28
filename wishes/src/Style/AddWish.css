@@ -1,0 +1,68 @@
+.AddWishForm{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+  font-weight: 1000;
+  font-size: x-large;
+  margin: auto;  
+  margin-top: 40px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5%; 
+  border: 3px solid rgb(255, 255, 255);
+  padding-bottom: 20px;
+}
+
+.AddWishForm > textarea{
+  height: 250px;
+}
+
+.imgInput{
+  margin-right: 5px;
+  border-radius: 13px;
+  width: 300px;
+  float: left;
+}
+
+.addIcon{
+  margin-left: 6px;
+  border-radius: 8px;
+}
+
+.addButton{
+  margin-top: 15px;
+  border-radius: 10px;
+  width: 100px;
+  margin: 10px 0px 10px 115px;
+}
+
+.addWishMainDiv{
+    background-color:#73AAEB;
+    border: black 2px solid;
+    position: fixed;
+    width: 460px;
+    height: fit-content;
+    z-index: 2;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top: 10%;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+
+}
+
+
+.addWishMainDiv > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between ;
+  width: 100%;
+}
+
+.addWishMainDiv > div > img{
+  width: 30px;
+  align-self: flex-end;
+}
