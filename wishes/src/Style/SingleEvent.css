@@ -100,12 +100,14 @@ box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.25);
 
 
 }
-.wish > p {
+.wish >  .wishp> p {
     padding: 5px;
     background: #E6FFF9;
 box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.25);
 border-radius: 15px;    
 text-align: left;
+min-height:180px;
+max-height:fit-content;
 
 }
 

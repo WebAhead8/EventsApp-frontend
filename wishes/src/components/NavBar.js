@@ -15,6 +15,8 @@ import HomeIcon from '@material-ui/icons/Home';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useHistory } from "react-router-dom";
+import PostAddIcon from '@material-ui/icons/PostAdd';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -145,17 +147,39 @@ history.push("/")
       onClose={handleMobileMenuClose}
     >
 
-<MenuItem>
-        <IconButton color="inherit" onClick={e=>{history.push('/events')}}>
+<MenuItem onClick={e=>{history.push('/events')}}>
+<IconButton color="inherit" >
 
-            <EventIcon  />
+<EventIcon  />
 
-        </IconButton>
+</IconButton>
+
         <p>Events</p>
       </MenuItem>
 
-      <MenuItem>
-        <IconButton color="inherit">
+
+      <MenuItem onClick={e=>{history.push('/addEvent')}}>
+<IconButton color="inherit" >
+
+<PostAddIcon  />
+
+</IconButton>
+
+        <p>addEvent</p>
+      </MenuItem>
+
+      <MenuItem onClick={e=>{history.push('/myevents')}}>
+<IconButton color="inherit" >
+
+<AccountBoxIcon  />
+
+</IconButton>
+
+        <p>my Events</p>
+      </MenuItem>
+
+      <MenuItem onClick={e=>{history.push('/')}}>
+        <IconButton color="inherit" >
 
             <HomeIcon />
 
@@ -210,8 +234,14 @@ history.push("/")
           <div className={classes.sectionDesktop}>
             {/* {on the navbar} */}
 
-            <IconButton  color="inherit">
+            <IconButton  color="inherit" onClick={e=>{history.push('/')}}>
                 <HomeIcon />
+            </IconButton>
+            <IconButton  color="inherit" onClick={e=>{history.push('/addEvent')}}>
+                <PostAddIcon />
+            </IconButton>
+            <IconButton  color="inherit" onClick={e=>{history.push('/myEvents')}}>
+                <AccountBoxIcon />
             </IconButton>
             <IconButton  color="inherit" onClick={e=>{history.push('/events')}}>
                 <EventIcon />

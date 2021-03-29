@@ -12,7 +12,7 @@ function AddEvent() {
 
   const [Title, setTitle] = useState("");
   const [Description, setDescription] = useState("");
-  const [Date, setDate] = useState("");
+  const [Date, setDate] = useState("24/05/2017");
   const [Location, setLocation] = useState("");
   const [Image, setImage] = useState("");
   const [Category, setCategory] = useState("birthday");
@@ -66,7 +66,7 @@ function AddEvent() {
 
   const addEventHandler = (e) => {
     e.preventDefault();
-    AddEventFetch(localStorage.getItem("user"), Title, Description, Date, Location, Category)
+    AddEventFetch(localStorage.getItem("user"), Title, Description, Date, Location, Category,Image)
       .then(res => res.json())
       .then(data => { history.push("/events") })
   }
@@ -121,7 +121,6 @@ function AddEvent() {
         <label htmlFor="Image">Image : </label>
         <span className="img">
           <input type="text" onChange={(e) => setImage(e.target.value)} value={Image} placeHolder="Enter the Image" className="imgInput" ></input>
-          <button type="button" className="uploadImg"><AddPhotoAlternateIcon /></button>
         </span>
         <input type="submit" value="Add Event" className="AddEventClass"></input>
       </form>

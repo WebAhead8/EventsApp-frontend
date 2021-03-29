@@ -15,6 +15,7 @@ function SingleEvent(props) {
 
 
   const [eventOwner, setEventOwner] = React.useState("")
+  const [eventImage, setEventImage] = React.useState("https://blog.walls.io/wp-content/uploads/2017/02/ideas-for-making-event-more-social.jpg")
   const [eventId, setEventId] = React.useState("")
   const [eventTitle, setEventTitle] = React.useState("")
   const [eventDate, setEventDate] = React.useState("")
@@ -48,6 +49,10 @@ function SingleEvent(props) {
           setEventTitle(data[0].title);
           setEventDescription(data[0].description)
           setEventId(data[0]._id)
+          if(data[0].image)
+          {
+            setEventImage(data[0].image)
+          }
         }
 
       }).catch(error => {
@@ -80,12 +85,18 @@ be the first to add an wish
         } else {
           setEventWishes(data);
           const arr = data.map(wish => {
-            return (<div className="wish">
+            return (<div className="wish" key={wish._id}>
+              {wish.image ? <img src={wish.image}/>:
               <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-1201202312.jpg" />
+              
+              }
               <label className="wishSender">{wish.owner[0].firstName + " " + wish.owner[0].lastName}</label>
-              <p>
+              <div className="wishp">
+              <p >
                 {wish.wish}
               </p>
+              </div>
+       
             </div>)
           })
           setWishesToRender(arr)
@@ -98,7 +109,7 @@ be the first to add an wish
 
   if (idFound === "checking") {
     return (
-      <div className="mainSingleEventDiv">
+      <div className="mainSingleEventDiv" key="1">
         <NavBar />
         <div className="spinner">
           <Spinner animation="grow" /><Spinner animation="grow" /><Spinner animation="grow" />
@@ -109,7 +120,7 @@ be the first to add an wish
     )
   } else if (idFound === "notFound") {
     return (
-      <div className="mainSingleEventDiv">
+      <div className="mainSingleEventDiv" key="1">
         <NavBar />
         <div className="spinner">
           <label>ID Not Found</label>
@@ -133,7 +144,7 @@ be the first to add an wish
           <div id="eventPhoto">
             <img
               alt=""
-              src="https://wallpaperaccess.com/full/1552186.jpg"
+              src={eventImage}
             />
           </div>
         </div>
