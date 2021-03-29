@@ -7,6 +7,7 @@ import { Spinner } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useHistory } from "react-router-dom";
 import AddWish from "./AddWish";
+import WishesSuggestions from "./WishesSuggestions"
 
 function SingleEvent(props) {
   const [idFound, setIdFound] = React.useState("checking");
@@ -21,9 +22,13 @@ function SingleEvent(props) {
   const [eventDate, setEventDate] = React.useState("");
   const [eventLocation, setEventLocation] = React.useState("");
   const [eventDescription, setEventDescription] = React.useState("");
+  const [eventCategory, setEventCategory] = React.useState("");
   const [wishesToRender, setWishesToRender] = React.useState([]);
   const [eventWishes, setEventWishes] = React.useState([]);
   const [addWishClicked, setAddWishClicked] = React.useState(false);
+  const [wishesSuggestionsClicked, setWishesSuggestionsClicked] = React.useState(false);
+  const [wish, setWish] = React.useState("");
+
 
   React.useEffect(() => {
     if (!localStorage.getItem("user")) {
@@ -47,6 +52,7 @@ function SingleEvent(props) {
           setEventTitle(data[0].title);
           setEventDescription(data[0].description);
           setEventId(data[0]._id);
+          setEventCategory(data[0].category)
           if (data[0].image) {
             setEventImage(data[0].image);
           }
@@ -129,11 +135,21 @@ function SingleEvent(props) {
   return (
     <div className="mainSingleEventDiv">
       <NavBar />
+      {wishesSuggestionsClicked ? 
+      <WishesSuggestions category={eventCategory} setWishesSuggestionsClicked={setWishesSuggestionsClicked}
+      wish={wish}
+      setWish={setWish}
+      />:""
+}
       {addWishClicked ? (
         <AddWish
+        wishesSuggestionsClicked={wishesSuggestionsClicked}
+        setWishesSuggestionsClicked={setWishesSuggestionsClicked}
           setAddWishClicked={setAddWishClicked}
           eventId={eventId}
           setEventWishes={setEventWishes}
+          wish={wish}
+          setWish={setWish}
         />
       ) : (
         ""
