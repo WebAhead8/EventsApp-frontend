@@ -8,7 +8,6 @@ import { signupFetch } from "../Fetches/signUpFetches";
 import { useHistory } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 
-
 function SignUp() {
   const [loading, setLoading] = React.useState(false);
 
@@ -30,7 +29,6 @@ function SignUp() {
   ] = React.useState("");
   const [signupValidation, setSignupValidation] = React.useState(true);
   const [emailExist, setEmailExist] = React.useState(false);
-
 
   const history = useHistory();
 
@@ -54,7 +52,7 @@ function SignUp() {
       console.log("NOT valid");
       setSignupValidation(false);
     } else {
-setLoading(true);
+      setLoading(true);
 
       setSignupValidation(true);
       signupFetch(finalData)
@@ -62,19 +60,15 @@ setLoading(true);
         .then((data) => {
           if (data.error) {
             setEmailExist(true);
-setLoading(false);
-
-
+            setLoading(false);
           } else {
             setEmailExist(false);
             setLoading(false);
-            localStorage.setItem("user",data.access_token)
-            history.push("/")
-
+            localStorage.setItem("user", data.access_token);
+            history.push("/");
           }
         })
         .catch((err) => console.log(err));
-
     }
   };
 
@@ -263,8 +257,15 @@ setLoading(false);
             Login
           </button>
         </div>
-      {loading?<div><Spinner animation="grow" size="sm"/><Spinner animation="grow" size="sm"/><Spinner animation="grow" size="sm"/></div>:"" }
-
+        {loading ? (
+          <div>
+            <Spinner animation="grow" size="sm" />
+            <Spinner animation="grow" size="sm" />
+            <Spinner animation="grow" size="sm" />
+          </div>
+        ) : (
+          ""
+        )}
       </form>
     </>
   );

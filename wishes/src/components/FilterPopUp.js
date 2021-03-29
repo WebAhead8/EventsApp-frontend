@@ -11,9 +11,16 @@ const categotyOptions = [
   "seminars",
   "graduation",
 ];
-function Filter({ setFilterClecked,CategoryFilter,setCategory,setDate,DateFilterChecked,setDateChecked,CategoryFilterChecked,setCategoryChecked }) {
-
-
+function Filter({
+  setFilterClecked,
+  CategoryFilter,
+  setCategory,
+  setDate,
+  DateFilterChecked,
+  setDateChecked,
+  CategoryFilterChecked,
+  setCategoryChecked,
+}) {
   const categoryFilterHandler = (e) => {
     setCategory(e.target.value);
   };
@@ -76,10 +83,10 @@ function Filter({ setFilterClecked,CategoryFilter,setCategory,setDate,DateFilter
           })}
         </select>
         <input
-      type="checkbox"
-     checked={CategoryFilterChecked}
-   onChange={(event) => setCategoryChecked(event.target.checked)}
-    />
+          type="checkbox"
+          checked={CategoryFilterChecked}
+          onChange={(event) => setCategoryChecked(event.target.checked)}
+        />
       </div>
       <div>
         <label>Date</label>
@@ -95,11 +102,11 @@ function Filter({ setFilterClecked,CategoryFilter,setCategory,setDate,DateFilter
             shrink: true,
           }}
         />
-         <input
-      type="checkbox"
-       checked={DateFilterChecked}
-       onChange={(event) => setDateChecked(event.target.checked)}
-    />
+        <input
+          type="checkbox"
+          checked={DateFilterChecked}
+          onChange={(event) => setDateChecked(event.target.checked)}
+        />
       </div>
 
       <div>

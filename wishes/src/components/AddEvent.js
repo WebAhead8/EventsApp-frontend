@@ -1,22 +1,19 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import "../Style/AddEvent.css"
-import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
+import "../Style/AddEvent.css";
+import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import Navbar from "./NavBar";
 import { AddEventFetch } from "../Fetches/addEventFetch";
 import { useHistory } from "react-router-dom";
 
-
 function AddEvent() {
-
   const [Title, setTitle] = useState("");
   const [Description, setDescription] = useState("");
   const [Date, setDate] = useState("24/05/2017");
   const [Location, setLocation] = useState("");
   const [Image, setImage] = useState("");
   const [Category, setCategory] = useState("birthday");
-
 
   const history = useHistory();
 
@@ -46,8 +43,6 @@ function AddEvent() {
     setDate(newDate);
   };
 
-
-
   const useStyles = makeStyles((theme) => ({
     container: {
       display: "flex",
@@ -62,27 +57,44 @@ function AddEvent() {
 
   const classes = useStyles();
 
-
-
   const addEventHandler = (e) => {
     e.preventDefault();
-    AddEventFetch(localStorage.getItem("user"), Title, Description, Date, Location, Category,Image)
-      .then(res => res.json())
-      .then(data => { history.push("/events") })
-  }
-
-
+    AddEventFetch(
+      localStorage.getItem("user"),
+      Title,
+      Description,
+      Date,
+      Location,
+      Category,
+      Image
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        history.push("/events");
+      });
+  };
 
   return (
     <>
       <Navbar />
-      <form className="AddEventForm" onSubmit={(e) => addEventHandler(e)} >
-
+      <form className="AddEventForm" onSubmit={(e) => addEventHandler(e)}>
         <label htmlFor="Title">Title :</label>
-        <input type="text" onChange={(e) => setTitle(e.target.value)} value={Title} placeHolder="Enter the Title" required></input>
+        <input
+          type="text"
+          onChange={(e) => setTitle(e.target.value)}
+          value={Title}
+          placeHolder="Enter the Title"
+          required
+        ></input>
 
         <label htmlFor="Description">Description : </label>
-        <textarea onChange={(e) => setDescription(e.target.value)} value={Description} placeHolder="Enter the Description" required className="Description"></textarea>
+        <textarea
+          onChange={(e) => setDescription(e.target.value)}
+          value={Description}
+          placeHolder="Enter the Description"
+          required
+          className="Description"
+        ></textarea>
 
         <label htmlFor="Date">Date :</label>
         <TextField
@@ -98,8 +110,13 @@ function AddEvent() {
         />
 
         <label htmlFor="Location">Location : </label>
-        <input type="text" onChange={(e) => setLocation(e.target.value)} value={Location} placeHolder="Enter the Location" required></input>
-
+        <input
+          type="text"
+          onChange={(e) => setLocation(e.target.value)}
+          value={Location}
+          placeHolder="Enter the Location"
+          required
+        ></input>
 
         <label>Category</label>
         <select
@@ -117,14 +134,23 @@ function AddEvent() {
           })}
         </select>
 
-
         <label htmlFor="Image">Image : </label>
         <span className="img">
-          <input type="text" onChange={(e) => setImage(e.target.value)} value={Image} placeHolder="Enter the Image" className="imgInput" ></input>
+          <input
+            type="text"
+            onChange={(e) => setImage(e.target.value)}
+            value={Image}
+            placeHolder="Enter the Image"
+            className="imgInput"
+          ></input>
         </span>
-        <input type="submit" value="Add Event" className="AddEventClass"></input>
+        <input
+          type="submit"
+          value="Add Event"
+          className="AddEventClass"
+        ></input>
       </form>
     </>
-  )
+  );
 }
 export default AddEvent;

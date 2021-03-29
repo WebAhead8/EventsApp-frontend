@@ -5,7 +5,6 @@ import { addWishFetch } from "../Fetches/addWishFetch";
 import { getWishesForEvent } from "../Fetches/getWishesForEvent";
 import FileBase64 from "react-file-base64";
 
-
 function AddWish({ setAddWishClicked, eventId, setEventWishes }) {
   const getWishesFunction = () => {
     getWishesForEvent(eventId)
@@ -20,13 +19,16 @@ function AddWish({ setAddWishClicked, eventId, setEventWishes }) {
 
   const addWishHandler = (e) => {
     e.preventDefault();
-    console.log({wish:wish,eventId:eventId,image:image})
+    console.log({ wish: wish, eventId: eventId, image: image });
     addWishFetch(localStorage.getItem("user"), wish, eventId, image)
       .then((res) => res.json())
       .then((data) => {
         getWishesFunction();
         setAddWishClicked(false);
-      }).catch(error=>{console.log(error)})
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -53,11 +55,12 @@ function AddWish({ setAddWishClicked, eventId, setEventWishes }) {
         </textarea>
 
         <label htmlFor="Image">Image :</label>
-        <input type="text" onChange={e=>{
+        <input
+          type="text"
+          onChange={(e) => {
             setImage(e.target.value);
-      
-        }}></input>
-  
+          }}
+        ></input>
 
         {/* <FileBase64
           // multiple={ true }
@@ -65,9 +68,6 @@ function AddWish({ setAddWishClicked, eventId, setEventWishes }) {
             setImage(e.base64);
           }}
         /> */}
-
-
-   
 
         <input type="submit" value="Add" className="addButton"></input>
       </form>

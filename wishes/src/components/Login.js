@@ -8,8 +8,7 @@ import { loginFetch } from "../Fetches/loginFetch";
 import { useHistory } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 
-
-require('dotenv').config()
+require("dotenv").config();
 
 function Login(props) {
   const history = useHistory();
@@ -17,15 +16,12 @@ function Login(props) {
   const [password, setPassword] = React.useState("");
   const [errorViseble, setErrorViseble] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
-  
 
-React.useEffect(()=>{
-  if(localStorage.getItem("user"))
-  {
-    history.push('/events')
-  }
-},[])
-
+  React.useEffect(() => {
+    if (localStorage.getItem("user")) {
+      history.push("/events");
+    }
+  }, []);
 
   const emailHandler = (e) => {
     setEmail(e.target.value);
@@ -35,53 +31,54 @@ React.useEffect(()=>{
     setPassword(e.target.value);
   };
 
-  const loginHandler=(e)=>{
+  const loginHandler = (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
 
-    loginFetch(email,password).then(res=>res.json())
-    .then(token=>{
-        if(token.error)
-        {
-            setErrorViseble(true)
-    setLoading(false)
+    loginFetch(email, password)
+      .then((res) => res.json())
+      .then((token) => {
+        if (token.error) {
+          setErrorViseble(true);
+          setLoading(false);
+        } else {
+          setErrorViseble(false);
+          setLoading(false);
 
-        }else{
-          
-          setErrorViseble(false)
-    setLoading(false)
-
-          localStorage.setItem("user",token.access_token)
-          history.push('/events')
-
+          localStorage.setItem("user", token.access_token);
+          history.push("/events");
         }
-    })
-    .catch(err=>{
-        console.log("err")
-        console.log(err)
-    })
-  }
+      })
+      .catch((err) => {
+        console.log("err");
+        console.log(err);
+      });
+  };
 
   return (
     <form className="loginForm" onSubmit={loginHandler}>
       <h1>Log in</h1>
       <label htmlFor="email">Email</label>
       <div className="inputLabel">
-      <span><FontAwesomeIcon icon={faUser} /></span>
-      <input
-        required
-        placeholder="example@somthing.com"
-        name="email"
-        id="email"
-        type="email"
-        onChange={emailHandler}
-        value={email}
-      />
+        <span>
+          <FontAwesomeIcon icon={faUser} />
+        </span>
+        <input
+          required
+          placeholder="example@somthing.com"
+          name="email"
+          id="email"
+          type="email"
+          onChange={emailHandler}
+          value={email}
+        />
       </div>
 
       <label htmlFor="password">Password</label>
       <div className="inputLabel">
-      <span><FontAwesomeIcon icon={faKey} /></span>
+        <span>
+          <FontAwesomeIcon icon={faKey} />
+        </span>
         <input
           required
           placeholder="********"
@@ -97,14 +94,31 @@ React.useEffect(()=>{
         Login <FontAwesomeIcon icon={faSignInAlt} />
       </button>
 
-
-      <button  type="button" value="SignUp" id="signUpButton" onClick={(e) => { history.push('/signup') }} >
+      <button
+        type="button"
+        value="SignUp"
+        id="signUpButton"
+        onClick={(e) => {
+          history.push("/signup");
+        }}
+      >
         SignUp <FontAwesomeIcon icon={faSignInAlt} />
       </button>
 
-      {errorViseble? <label className="errorLabel">invalid email or password</label>:""}
-      {loading?<div><Spinner animation="grow" size="sm"/><Spinner animation="grow" size="sm"/><Spinner animation="grow" size="sm"/></div>:"" }
-      
+      {errorViseble ? (
+        <label className="errorLabel">invalid email or password</label>
+      ) : (
+        ""
+      )}
+      {loading ? (
+        <div>
+          <Spinner animation="grow" size="sm" />
+          <Spinner animation="grow" size="sm" />
+          <Spinner animation="grow" size="sm" />
+        </div>
+      ) : (
+        ""
+      )}
     </form>
   );
 }

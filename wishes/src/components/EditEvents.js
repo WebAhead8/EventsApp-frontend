@@ -2,14 +2,10 @@ import React from "react";
 import "../Style/EditEvents.css";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
-import {editEvent} from "../Fetches/editEventFech"
-import {getMyEvents} from "../Fetches/getMyEvents"
+import { editEvent } from "../Fetches/editEventFech";
+import { getMyEvents } from "../Fetches/getMyEvents";
 import { Spinner } from "react-bootstrap";
-import DeleteComponent from "./DeleteComponent"
-
-
-
-
+import DeleteComponent from "./DeleteComponent";
 
 function EditEvents({
   eventTitle,
@@ -22,16 +18,15 @@ function EditEvents({
   setEventDescription,
   eventId,
   setEditEventClicked,
-  setMyEvents
-  
+  setMyEvents,
 }) {
-
-    const fetchEvents=()=>{
-        getMyEvents(localStorage.getItem("user")).then(res=>res.json())
-        .then(data=>{
-            setMyEvents(data)
-        })
-    }
+  const fetchEvents = () => {
+    getMyEvents(localStorage.getItem("user"))
+      .then((res) => res.json())
+      .then((data) => {
+        setMyEvents(data);
+      });
+  };
 
   const [textFieldDate, setTextFieldDate] = React.useState();
   const [deleteChecked, setDeleteChecked] = React.useState(false);
@@ -69,18 +64,31 @@ function EditEvents({
 
   return (
     <div className="editEvent">
-       {deleteChecked?  <DeleteComponent setDeleteChecked={setDeleteChecked} eventId={eventId} setMyEvents={setMyEvents} setEditEventClicked={setEditEventClicked}/>:""}
-      
-      <div className="deleteDiv">
-        <img src="/exit.png" 
-        onClick={e=>{
-            setEditEventClicked(false)
-        }}/>
+      {deleteChecked ? (
+        <DeleteComponent
+          setDeleteChecked={setDeleteChecked}
+          eventId={eventId}
+          setMyEvents={setMyEvents}
+          setEditEventClicked={setEditEventClicked}
+        />
+      ) : (
+        ""
+      )}
 
-        <img src="/delete.png" 
-         onClick={e=>{
-            setDeleteChecked(true)
-        }}/>
+      <div className="deleteDiv">
+        <img
+          src="/exit.png"
+          onClick={(e) => {
+            setEditEventClicked(false);
+          }}
+        />
+
+        <img
+          src="/delete.png"
+          onClick={(e) => {
+            setDeleteChecked(true);
+          }}
+        />
       </div>
       <input
         value={eventTitle}
@@ -128,38 +136,41 @@ function EditEvents({
           setEventDescription(e.target.value);
         }}
       />
-            <div className="deleteDiv">
-        <img src="/save.png"
-        onClick={e=>{
-            const obj={title:eventTitle, 
-            description:eventDescription,
-             date:eventDate,
-             location:eventLocation,
-             id:eventId
-            }
-            setLoading(true)
+      <div className="deleteDiv">
+        <img
+          src="/save.png"
+          onClick={(e) => {
+            const obj = {
+              title: eventTitle,
+              description: eventDescription,
+              date: eventDate,
+              location: eventLocation,
+              id: eventId,
+            };
+            setLoading(true);
 
-            editEvent(localStorage.getItem("user"),obj)
-            .then(res => res.json())
-            .then(json => {console.log(json);
-                setTimeout(function(){
-                    fetchEvents();
-                setEditEventClicked(false)
-                setLoading(false)
-
-                 }, 1000);
-
-            }
-                )
-            .catch(err => console.error('error:' + err));
-        }}
+            editEvent(localStorage.getItem("user"), obj)
+              .then((res) => res.json())
+              .then((json) => {
+                console.log(json);
+                setTimeout(function () {
+                  fetchEvents();
+                  setEditEventClicked(false);
+                  setLoading(false);
+                }, 1000);
+              })
+              .catch((err) => console.error("error:" + err));
+          }}
         />
-        {loading?
-      <div><Spinner animation="grow" size="sm"/> <Spinner animation="grow" size="sm"/> <Spinner animation="grow" size="sm"/></div>
-        
-        :""}
-
-    
+        {loading ? (
+          <div>
+            <Spinner animation="grow" size="sm" />{" "}
+            <Spinner animation="grow" size="sm" />{" "}
+            <Spinner animation="grow" size="sm" />
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
