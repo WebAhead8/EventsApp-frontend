@@ -13,10 +13,12 @@
   border-radius: 5%; 
   border: 3px solid rgb(255, 255, 255);
   padding-bottom: 20px;
+height:80%;
+
 }
 
 .AddWishForm > textarea{
-  height: 250px;
+  height: 200px;
 }
 
 .imgInput{
@@ -42,12 +44,13 @@
     background-color:#73AAEB;
     border: black 2px solid;
     position: fixed;
-    width: 460px;
+    width: 90%;
+    max-width: 450px;
     height: fit-content;
     z-index: 2;
     left: 50%;
     transform: translate(-50%, 0);
-    top: 10%;
+    top: 3%;
     display: flex;
     flex-direction: column;
     padding: 5px;
@@ -65,4 +68,10 @@
 .addWishMainDiv > div > img{
   width: 30px;
   align-self: flex-end;
+}
+.addWishMainDiv input[type='file']
+
+{
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

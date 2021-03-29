@@ -1,7 +1,8 @@
 .AddEventForm{
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 90%;
+  max-width: 400px;
   font-weight: 1000;
   font-size: x-large;
   margin: auto;  
