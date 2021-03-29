@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "../Style/AddWish.css";
-import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
+// import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import { addWishFetch } from "../Fetches/addWishFetch";
 import { getWishesForEvent } from "../Fetches/getWishesForEvent";
-import FileBase64 from "react-file-base64";
+// import FileBase64 from "react-file-base64";
+import CardGiftcardIcon from '@material-ui/icons/CardGiftcard';
 
-function AddWish({ setAddWishClicked, eventId, setEventWishes }) {
+function AddWish({ setAddWishClicked, eventId, setEventWishes,setWishesSuggestionsClicked ,wish,setWish}) {
   const getWishesFunction = () => {
     getWishesForEvent(eventId)
       .then((res) => res.json())
@@ -14,12 +15,10 @@ function AddWish({ setAddWishClicked, eventId, setEventWishes }) {
       });
   };
 
-  const [wish, setWish] = useState("");
   const [image, setImage] = useState("");
 
   const addWishHandler = (e) => {
     e.preventDefault();
-    console.log({ wish: wish, eventId: eventId, image: image });
     addWishFetch(localStorage.getItem("user"), wish, eventId, image)
       .then((res) => res.json())
       .then((data) => {
@@ -33,12 +32,15 @@ function AddWish({ setAddWishClicked, eventId, setEventWishes }) {
 
   return (
     <div className="addWishMainDiv">
+      
       <div>
-        <label></label>
+       <CardGiftcardIcon onClick={e=>{setWishesSuggestionsClicked(true)}}/>
         <img
+        alt=""
           src="/exit.png"
           onClick={(e) => {
             setAddWishClicked(false);
+            setWishesSuggestionsClicked(false)
           }}
         />
       </div>
