@@ -7,6 +7,7 @@ import { getMyEvents } from "../Fetches/getMyEvents";
 import { Spinner } from "react-bootstrap";
 import { Visibility } from "@material-ui/icons";
 import EditEvent from "./EditEvents";
+import UserCard from './UserCard';
 
 function MyEvents(props) {
   const [eventTitle, setEventTitle] = React.useState("DSD");
@@ -114,6 +115,9 @@ function MyEvents(props) {
     return (
       <div className="myEventsMainDiv">
         <Navbar />
+        <div className="userCardDiv">
+          <UserCard />
+        </div>
         <div className="eventDiv">
           <div className="divDescription">
             <p>You Have No Events</p>
@@ -144,6 +148,9 @@ function MyEvents(props) {
       )}
 
       <Navbar />
+      <div className="userCardDiv">
+        <UserCard />
+      </div>
       {eventsToRender}
     </div>
   );
