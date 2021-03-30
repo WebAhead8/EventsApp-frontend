@@ -6,8 +6,9 @@ import NavBar from "./NavBar";
 import Filter from "./FilterPopUp";
 import { getAllEvents } from "../Fetches/getAllEvents";
 import { useHistory } from "react-router-dom";
+// import 
 
-function Events(props) {
+function Events(props) {      
   const history = useHistory();
 
   const [eventsArr, setEventArr] = React.useState([]);
