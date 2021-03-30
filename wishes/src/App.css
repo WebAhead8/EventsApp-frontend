@@ -40,3 +40,7 @@ html,body{
     transform: rotate(360deg);
   }
 }
+
+.logo{
+  width: 40px;
+}

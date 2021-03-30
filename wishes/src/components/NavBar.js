@@ -169,7 +169,7 @@ export default function PrimarySearchAppBar() {
 
       <MenuItem
         onClick={(e) => {
-          history.push("/myevents");
+          history.push("/userevents");
         }}
       >
         <IconButton color="inherit">
@@ -214,24 +214,12 @@ export default function PrimarySearchAppBar() {
             color="inherit"
             aria-label="open drawer"
           >
-            <MenuIcon />
+            <img className="logo" src="https://www.pngkey.com/png/full/125-1257008_event-png-free-download-tracing-your-scottish-ancestry.png"/>
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Events&Wishes
+            Events & Wishes
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
-          </div>
+
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             {/* {on the navbar} */}
@@ -260,7 +248,7 @@ export default function PrimarySearchAppBar() {
             <IconButton
               color="inherit"
               onClick={(e) => {
-                history.push("/myEvents");
+                history.push("/userevents");
               }}
             >
               <h6>My Events</h6>

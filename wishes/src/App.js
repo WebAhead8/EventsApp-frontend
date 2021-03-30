@@ -17,7 +17,7 @@ function App() {
         <Route exact path='/signup' component={SignUp}></Route>
         <Route exact path='/events' component={Events}></Route>
         <Route exact path='/events/:eventId' component={SingleEvent} ></Route>
-        <Route exact path='/myevents' component={MyEvents} ></Route>
+        <Route exact path='/userevents' component={MyEvents} ></Route>
         <Route exact path='/addEvent' component={AddEvent} ></Route>
       </Switch>
     </div>
