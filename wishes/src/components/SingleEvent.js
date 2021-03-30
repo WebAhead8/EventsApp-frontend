@@ -8,16 +8,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useHistory } from "react-router-dom";
 import AddWish from "./AddWish";
 import WishesSuggestions from "./WishesSuggestions"
+import {getUserByToken} from "../Fetches/getUserByToken"
+import { CollectionsOutlined } from "@material-ui/icons";
+import {deleteWish } from "../Fetches/deleteWish"
 
 function SingleEvent(props) {
   const [idFound, setIdFound] = React.useState("checking");
   const history = useHistory();
 
   const [eventOwner, setEventOwner] = React.useState("");
+  const [userId, setUserId] = React.useState(localStorage.getItem(""));
   const [eventImage, setEventImage] = React.useState(
     "https://blog.walls.io/wp-content/uploads/2017/02/ideas-for-making-event-more-social.jpg"
   );
   const [eventId, setEventId] = React.useState("");
+  const [eventOwnerId, setEventOwnerId] = React.useState("");
   const [eventTitle, setEventTitle] = React.useState("");
   const [eventDate, setEventDate] = React.useState("");
   const [eventLocation, setEventLocation] = React.useState("");
@@ -33,6 +38,12 @@ function SingleEvent(props) {
   React.useEffect(() => {
     if (!localStorage.getItem("user")) {
       history.push("/");
+    }else{
+    
+      getUserByToken(localStorage.getItem("user")).then(res=>res.json())
+      .then(data=>{
+       setUserId(data[0]._id)
+      })
     }
   }, []);
 
@@ -43,6 +54,7 @@ function SingleEvent(props) {
         if (data.status) {
           setIdFound("notFound");
         } else {
+          setEventOwnerId(data[0].owner[0]._id);
           setIdFound("Found");
           setEventOwner(
             data[0].owner[0].firstName + " " + data[0].owner[0].lastName
@@ -94,6 +106,17 @@ function SingleEvent(props) {
                 <div className="wishp">
                   <p>{wish.wish}</p>
                 </div>
+                {
+                  wish.owner[0]._id===userId || eventOwnerId===userId ?
+                  <div className="deletigWish"> <img src="/delete.png" onClick={e=>{
+                    deleteWish(localStorage.getItem("user"),wish._id).then (res=>res.json())
+                    .then (data=>{
+                      console.groupCollapsed(data)
+                    })
+                  }}/><label></label></div>
+
+                  :""
+                }
               </div>
             );
           });
