@@ -242,7 +242,10 @@ export default function PrimarySearchAppBar() {
                 history.push("/");
               }}
             >
+              <h6>home</h6>
+
               <HomeIcon />
+
             </IconButton>
             <IconButton
               color="inherit"
@@ -250,6 +253,8 @@ export default function PrimarySearchAppBar() {
                 history.push("/addEvent");
               }}
             >
+              <h6>add Event</h6>
+
               <PostAddIcon />
             </IconButton>
             <IconButton
@@ -258,6 +263,8 @@ export default function PrimarySearchAppBar() {
                 history.push("/myEvents");
               }}
             >
+              <h6>My Events</h6>
+
               <AccountBoxIcon />
             </IconButton>
             <IconButton
@@ -266,6 +273,7 @@ export default function PrimarySearchAppBar() {
                 history.push("/events");
               }}
             >
+              <h6>events</h6>
               <EventIcon />
             </IconButton>
             <IconButton
