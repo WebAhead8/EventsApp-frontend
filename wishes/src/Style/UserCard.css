@@ -1,58 +1,35 @@
-.editIcon{
-  width: 100%;
+.userCardMainDiv{
+  width: 90%;
+  max-width:750px ;
+  background-color: rgb(61, 129, 141);
+  padding: 20px;  
+  margin: auto;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  
-}
-.editIcon >span {
-  background-color: rgba(255, 228, 196, 0.308);
-  cursor: pointer;
 }
 
-.deleteDiv>img{
-cursor: pointer;
-}
-
-.delMainDiv{
-  background-color:#52ac77;
-  border: black 2px solid;
-  position: fixed;
-  width: 80%;
-  z-index: 2;
-  left: 50%;
-  transform: translate(-50%, 0);
-  top: 30%;
+.userCardMainDiv > .information{
   display: flex;
   flex-direction: column;
-  
-  padding: 5px;
+  width: 100%;
 }
 
-.delMainDiv>div{
-  margin-top: 20px;
-display: flex;
-flex-direction: row;
-justify-content: space-around;
-}
-.delMainDiv>div >button{
-  font-family: Patrick Hand;   
+.userCardMainDiv > .information label{
+
   background: #FFFFFF;
-box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.25);
-border-radius: 5px;
+  box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  width: 90%;
+  margin:10px;
 }
-.delMainDiv>div >button:nth-child(odd){
-  color: red;
-}
-.delMainDiv >p{
-   color: #6c7270;
-   font-family: Patrick Hand;
-font-style: normal;
-font-weight: normal;
-font-size: 20px;
-line-height: 27px;
-}
-.delMainDiv >p:nth-child(even){
-  color: #FF1212;
-  
+
+
+.userCardMainDiv img{
+  width: 75%;
 }

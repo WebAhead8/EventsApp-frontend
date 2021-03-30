@@ -115,7 +115,9 @@ function MyEvents(props) {
     return (
       <div className="myEventsMainDiv">
         <Navbar />
-        <UserCard />
+        <div className="userCardDiv">
+          <UserCard />
+        </div>
         <div className="eventDiv">
           <div className="divDescription">
             <p>You Have No Events</p>
@@ -146,7 +148,9 @@ function MyEvents(props) {
       )}
 
       <Navbar />
-      <UserCard />
+      <div className="userCardDiv">
+        <UserCard />
+      </div>
       {eventsToRender}
     </div>
   );

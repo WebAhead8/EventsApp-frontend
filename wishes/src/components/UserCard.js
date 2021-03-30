@@ -1,12 +1,7 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
-import { getUserByToken } from "../Fetches/getUserByToken";
-import { Spinner } from "react-bootstrap";
-import { Visibility } from "@material-ui/icons";
-import EditEvent from "./EditEvents";
-import Navbar from "./NavBar";
-import EditIcon from "@material-ui/icons/Edit";
 import "../Style/UserCard.css";
+import { getUserByToken } from "../Fetches/getUserByToken"
 
 
 function UserCard() {
@@ -26,12 +21,14 @@ function UserCard() {
       getUserByToken(localStorage.getItem("user"))
         .then((res) => res.json())
         .then((data) => {
-          setLoading(false);
-          if (!data.status) {
-            setEventsFound(true);
-            setMyEvents(data);
+          if (data[0].length == 0) {
+            console.log("not found");
           } else {
-            setEventsFound(false);
+            setFirstName(data[0].firstName)
+            setLastName(data[0].lastName)
+            setEmail(data[0].email)
+            setPhone(data[0].phoneNumber)
+            setBirthday(data[0].birthday)
           }
         })
         .catch((error) => {
@@ -40,98 +37,23 @@ function UserCard() {
     }
   }, []);
 
-  React.useEffect(() => {
-    const arr = myEvents.map((event) => {
-      return (
-        <div className="eventDiv" key={event._id}>
-          <div className="editIcon">
-            <span
-              onClick={(e) => {
-                history.push(history.push("/events/" + event._id));
-              }}
-            >
-              <Visibility />
-            </span>
 
-            <span
-              onClick={(e) => {
-                setEditEventClicked(true);
-                setEventTitle(event.title);
-                setEventDate(event.date);
-                setEventLocation(event.location);
-                setEventDescription(event.description);
-                seteventId(event._id);
-              }}
-            >
-              <EditIcon className="" />
-            </span>
-          </div>
-
-          <div className="eventInformationDiv">
-            <div id="info">
-              <label className="eventLabel">{event.title}</label>
-              <label className="eventLabel">{event.location}</label>
-              <label className="eventLabel">{event.date}</label>
-            </div>
-
-            <div id="eventPhoto">
-              <img alt="" src="https://wallpaperaccess.com/full/1552186.jpg" />
-            </div>
-          </div>
-
-          <div className="divDescription">
-            <p>{event.description}</p>
-          </div>
-        </div>
-      );
-    });
-    setEventsToRender(arr);
-  }, [myEvents]);
-
-  if (loading) {
-    return (
-      <div className="myEventsMainDiv">
-        <div className="spinner">
-          <Spinner animation="grow" />
-          <Spinner animation="grow" />
-          <Spinner animation="grow" />
-        </div>
-      </div>
-    );
-  }
-
-  if (!eventsFound) {
-    return (
-      <div className="myEventsMainDiv">
-        <div className="eventDiv">
-          <div className="divDescription">
-            <p>You Have No Events</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
-    <div className="myEventsMainDiv">
-      {editEventClicked ? (
-        <EditEvent
-          eventTitle={eventTitle}
-          setEventDate={setEventDate}
-          eventLocation={eventLocation}
-          setEventLocation={setEventLocation}
-          eventDescription={eventDescription}
-          setEventDescription={setEventDescription}
-          eventDate={eventDate}
-          setEventTitle={setEventTitle}
-          eventId={eventId}
-          setEditEventClicked={setEditEventClicked}
-          setMyEvents={setMyEvents}
-        />
-      ) : (
-        ""
-      )}
-      {eventsToRender}
+    <div className="userCardMainDiv">
+
+      <div className="information">
+        <label>{firstName + " " + lastName}</label>
+        <label>{email}</label>
+        <label>{phone}</label>
+        <label>{birthday}</label>
+
+      </div>
+
+
+      <div className="imageDiv">
+        <img src="https://lh3.googleusercontent.com/proxy/zg9ckdTiNj5VhgGpKiWFtNJYMHQjFqjUz8P_Mk8q_tS2aDQDTPAh37Hc4-XY75mWB2NrfzMGNrpXYdVifpBAfqQiBDwnUaA"></img>
+      </div>
     </div>
   );
 

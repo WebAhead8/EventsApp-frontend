@@ -56,3 +56,10 @@ line-height: 27px;
     color: #FF1212;
     
 }
+
+.userCardDiv{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
