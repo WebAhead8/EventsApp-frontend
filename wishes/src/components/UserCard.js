@@ -1,33 +1,29 @@
-import React from "react";
-import Navbar from "./NavBar";
-import EditIcon from "@material-ui/icons/Edit";
-import "../Style/MyEvents.css";
+import React from 'react';
 import { useHistory } from "react-router-dom";
-import { getMyEvents } from "../Fetches/getMyEvents";
+import { getUserByToken } from "../Fetches/getUserByToken";
 import { Spinner } from "react-bootstrap";
 import { Visibility } from "@material-ui/icons";
 import EditEvent from "./EditEvents";
-import UserCard from './UserCard';
+import Navbar from "./NavBar";
+import EditIcon from "@material-ui/icons/Edit";
+import "../Style/UserCard.css";
 
-function MyEvents(props) {
-  const [eventTitle, setEventTitle] = React.useState("DSD");
-  const [eventDate, setEventDate] = React.useState("25/06/1997");
-  const [eventLocation, setEventLocation] = React.useState("");
-  const [eventDescription, setEventDescription] = React.useState("");
-  const [eventId, seteventId] = React.useState("");
-  const [editEventClicked, setEditEventClicked] = React.useState(false);
+
+function UserCard() {
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [phone, setPhone] = React.useState("");
+  const [birthday, setBirthday] = React.useState();
 
   const history = useHistory();
-  const [myEvents, setMyEvents] = React.useState([]);
-  const [eventsFound, setEventsFound] = React.useState(false);
-  const [loading, setLoading] = React.useState(true);
-  const [eventsToRender, setEventsToRender] = React.useState(true);
+
 
   React.useEffect(() => {
     if (!localStorage.getItem("user")) {
       history.push("/");
     } else {
-      getMyEvents(localStorage.getItem("user"))
+      getUserByToken(localStorage.getItem("user"))
         .then((res) => res.json())
         .then((data) => {
           setLoading(false);
@@ -95,14 +91,7 @@ function MyEvents(props) {
   if (loading) {
     return (
       <div className="myEventsMainDiv">
-        <Navbar />
         <div className="spinner">
-          <Spinner animation="grow" />
-          <Spinner animation="grow" />
-          <Spinner animation="grow" />
-          <Spinner animation="grow" />
-          <Spinner animation="grow" />
-          <Spinner animation="grow" />
           <Spinner animation="grow" />
           <Spinner animation="grow" />
           <Spinner animation="grow" />
@@ -114,8 +103,6 @@ function MyEvents(props) {
   if (!eventsFound) {
     return (
       <div className="myEventsMainDiv">
-        <Navbar />
-        <UserCard />
         <div className="eventDiv">
           <div className="divDescription">
             <p>You Have No Events</p>
@@ -144,12 +131,12 @@ function MyEvents(props) {
       ) : (
         ""
       )}
-
-      <Navbar />
-      <UserCard />
       {eventsToRender}
     </div>
   );
-}
 
-export default MyEvents;
+
+
+};
+
+export default UserCard;
