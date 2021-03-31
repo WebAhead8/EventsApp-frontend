@@ -17,6 +17,7 @@ function SingleEvent(props) {
   const history = useHistory();
 
   const [eventOwner, setEventOwner] = React.useState("");
+  const [eventOwnerEmail, setEventOwnerEmail] = React.useState("");
   const [userId, setUserId] = React.useState(localStorage.getItem(""));
   const [eventImage, setEventImage] = React.useState(
     "https://blog.walls.io/wp-content/uploads/2017/02/ideas-for-making-event-more-social.jpg"
@@ -59,6 +60,7 @@ function SingleEvent(props) {
           setEventOwner(
             data[0].owner[0].firstName + " " + data[0].owner[0].lastName
           );
+          setEventOwnerEmail(data[0].owner[0].email)
           setEventLocation(data[0].location);
           setEventDate(data[0].date);
           setEventTitle(data[0].title);
@@ -180,7 +182,12 @@ function SingleEvent(props) {
       <div className="eventDiv">
         <div className="eventInformationDiv">
           <div id="info">
-            <label className="eventLabel">{eventOwner}</label>
+            <label className="eventLabel clickable" onClick={e=>{
+              history.push({
+                pathname: '/User',
+                state: { params: {email: eventOwnerEmail} }
+              })
+            }}>{eventOwner}</label>
             <label className="eventLabel">{eventTitle}</label>
             <label className="eventLabel">{eventDate}</label>
             <label className="eventLabel">{eventLocation}</label>
