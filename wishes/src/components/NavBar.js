@@ -143,17 +143,7 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem
-        onClick={(e) => {
-          history.push("/events");
-        }}
-      >
-        <IconButton color="inherit">
-          <EventIcon />
-        </IconButton>
 
-        <p>Events</p>
-      </MenuItem>
 
       <MenuItem
         onClick={(e) => {
@@ -255,15 +245,7 @@ export default function PrimarySearchAppBar() {
 
               <AccountBoxIcon />
             </IconButton>
-            <IconButton
-              color="inherit"
-              onClick={(e) => {
-                history.push("/events");
-              }}
-            >
-              <h6>events</h6>
-              <EventIcon />
-            </IconButton>
+
             <IconButton
               edge="end"
               aria-label="account of current user"

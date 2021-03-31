@@ -44,3 +44,6 @@ html,body{
 .logo{
   width: 40px;
 }
+.clickable{
+  cursor: pointer;
+}
