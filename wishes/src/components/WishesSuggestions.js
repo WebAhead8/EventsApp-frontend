@@ -101,7 +101,10 @@ function WishesSuggestions({ category,setWishesSuggestionsClicked,setWish }) {
   switch (category) {
     case "wedding":
       return <div className="wishesSuggestions">
-          <img src="/exit.png" alt=""/>
+          <img src="/exit.png" alt="" onClick={E=>{
+           setWishesSuggestionsClicked(false)
+
+          }}/>
 {weeddingWishes.map(wish=>{
     return (<p onClick={e=>{
         setWish(wish.wish)

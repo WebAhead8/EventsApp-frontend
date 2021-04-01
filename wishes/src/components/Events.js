@@ -126,7 +126,7 @@ function Events(props) {
             alt="FILTER"
             onClick={(e) => {
               setFilterClecked(true);
-              console.log(eventsArr);
+   
             }}
           />
           <input

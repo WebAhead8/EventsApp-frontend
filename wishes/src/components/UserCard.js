@@ -14,7 +14,7 @@ function UserCard(props) {
   const [email, setEmail] = React.useState("");
   const [phone, setPhone] = React.useState("");
   const [birthday, setBirthday] = React.useState();
-const [profileImage,setProfileImage]=React.useState("https://lh3.googleusercontent.com/proxy/zg9ckdTiNj5VhgGpKiWFtNJYMHQjFqjUz8P_Mk8q_tS2aDQDTPAh37Hc4-XY75mWB2NrfzMGNrpXYdVifpBAfqQiBDwnUaA")
+const [profileImage,setProfileImage]=React.useState("https://www.freeiconspng.com/uploads/blue-user-icon-32.jpg")
   const history = useHistory();
 
 
