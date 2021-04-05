@@ -25,7 +25,7 @@ function Events(props) {
     if (!localStorage.getItem("user")) {
       history.push("/");
     }
-  }, []);
+  });
 
   React.useEffect(() => {
     getAllEvents()
@@ -36,7 +36,7 @@ function Events(props) {
         }
       })
       .catch((err) => console.error);
-  }, []);
+  });
 
   React.useEffect(() => {
     if (eventsArr.length > 0) {
@@ -99,6 +99,7 @@ function Events(props) {
     CategoryFilterChecked,
     DateFilter,
     DateFilterChecked,
+    history
   ]);
 
   return (

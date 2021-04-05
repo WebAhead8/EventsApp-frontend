@@ -4,13 +4,9 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import EventIcon from "@material-ui/icons/Event";
 import HomeIcon from "@material-ui/icons/Home";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
@@ -204,7 +200,7 @@ export default function PrimarySearchAppBar() {
             color="inherit"
             aria-label="open drawer"
           >
-            <img className="logo" src="https://www.pngkey.com/png/full/125-1257008_event-png-free-download-tracing-your-scottish-ancestry.png"/>
+            <img alt="" className="logo" src="https://www.pngkey.com/png/full/125-1257008_event-png-free-download-tracing-your-scottish-ancestry.png"/>
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             Events & Wishes

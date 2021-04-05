@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import "../Style/AddEvent.css";
-import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import Navbar from "./NavBar";
 import { AddEventFetch } from "../Fetches/addEventFetch";
 import { useHistory } from "react-router-dom";
@@ -72,6 +71,12 @@ function AddEvent() {
       .then((data) => {
         history.push("/events");
       });
+      const data = new FormData();
+      data.append('file', Image);
+      axios.post('/upload', data)
+      .then((res) => {
+        this.setState({ photos: [res.data, ...this.state.photos] });
+      });
   };
 
   return (
@@ -136,13 +141,16 @@ function AddEvent() {
 
         <label htmlFor="Image">Image : </label>
         <span className="img">
-          <input
+          {/* <input
             type="text"
             onChange={(e) => setImage(e.target.value)}
             value={Image}
             placeHolder="Enter the Image"
             className="imgInput"
-          ></input>
+          ></input> */}
+          <input type="file" name="file" onChange={event=>{
+            setImage(event.target.files[0])
+          }}/>
         </span>
         <input
           type="submit"

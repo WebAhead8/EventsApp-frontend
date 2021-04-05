@@ -24,7 +24,7 @@ const [profileImage,setProfileImage]=React.useState("https://www.freeiconspng.co
       getUserByEmail(props.user)
       .then((res) => res.json())
       .then((data) => {
-        if (data[0].length == 0) {
+        if (data[0].length === 0) {
           console.log("not found");
         } else {
           setFirstName(data[0].firstName)
@@ -50,7 +50,7 @@ const [profileImage,setProfileImage]=React.useState("https://www.freeiconspng.co
       getUserByToken(localStorage.getItem("user"))
         .then((res) => res.json())
         .then((data) => {
-          if (data[0].length == 0) {
+          if (data[0].length === 0) {
             console.log("not found");
           } else {
             setFirstName(data[0].firstName)
@@ -69,7 +69,7 @@ const [profileImage,setProfileImage]=React.useState("https://www.freeiconspng.co
         });
     }
   }
-  }, []);
+  });
 
 
 
@@ -117,7 +117,7 @@ console.log(data)
 
 
       <div className="imageDiv">
-        <img src={profileImage}></img>
+        <img alt="" src={profileImage}></img>
         <input value={profileImage} onChange={e=>{setProfileImage(e.target.value)}}/>
 
       </div>
@@ -144,7 +144,7 @@ setEditing(true)
 
 
       <div className="imageDiv">
-        <img src={profileImage}></img>
+        <img alt="" src={profileImage}></img>
       </div>
      
     </div>

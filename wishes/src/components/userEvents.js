@@ -1,12 +1,9 @@
 import React from "react";
 import Navbar from "./NavBar";
-import EditIcon from "@material-ui/icons/Edit";
 import "../Style/MyEvents.css";
 import { useHistory } from "react-router-dom";
-import { getMyEvents } from "../Fetches/getMyEvents";
 import { Spinner } from "react-bootstrap";
 import { Visibility } from "@material-ui/icons";
-import EditEvent from "./EditEvents";
 import UserCard from './UserCard';
 import {getUserByEmail} from "../Fetches/getUserByEmail"
 import {getUserEvents} from "../Fetches/getUserEvents"
@@ -59,7 +56,7 @@ function MyEvents(props) {
         })
      
     }
-  }, []);
+  });
 
 
 
@@ -103,7 +100,7 @@ function MyEvents(props) {
       );
     });
     setEventsToRender(arr);
-  }, [userEvents]);
+  }, [userEvents,history]);
 
 
 

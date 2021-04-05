@@ -21,7 +21,7 @@ function Login(props) {
     if (localStorage.getItem("user")) {
       history.push("/events");
     }
-  }, []);
+  });
 
   const emailHandler = (e) => {
     setEmail(e.target.value);

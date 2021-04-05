@@ -42,7 +42,7 @@ function MyEvents(props) {
           console.log(error);
         });
     }
-  }, []);
+  });
 
   React.useEffect(() => {
     const arr = myEvents.map((event) => {
@@ -91,7 +91,7 @@ function MyEvents(props) {
       );
     });
     setEventsToRender(arr);
-  }, [myEvents]);
+  }, [myEvents,history]);
 
   if (loading) {
     return (

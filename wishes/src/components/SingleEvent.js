@@ -9,7 +9,6 @@ import { useHistory } from "react-router-dom";
 import AddWish from "./AddWish";
 import WishesSuggestions from "./WishesSuggestions"
 import {getUserByToken} from "../Fetches/getUserByToken"
-import { CollectionsOutlined } from "@material-ui/icons";
 import {deleteWish } from "../Fetches/deleteWish"
 
 function SingleEvent(props) {
@@ -46,7 +45,7 @@ function SingleEvent(props) {
        setUserId(data[0]._id)
       })
     }
-  }, []);
+  });
 
   React.useEffect(() => {
     getEventById(props.match.params.eventId)
@@ -76,7 +75,7 @@ function SingleEvent(props) {
         setIdFound("notFound");
         console.log(error);
       });
-  }, []);
+  });
 
   React.useEffect(() => {
     getWishesForEvent(props.match.params.eventId)
@@ -98,9 +97,9 @@ function SingleEvent(props) {
             return (
               <div className="wish" key={wish._id}>
                 {wish.image ? (
-                  <img src={wish.image} />
+                  <img src={wish.image} alt=""/>
                 ) : (
-                  <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-1201202312.jpg" />
+                  <img alt="" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-1201202312.jpg" />
                 )}
                 <label className="wishSender">
                   {wish.owner[0].firstName + " " + wish.owner[0].lastName}
@@ -110,7 +109,7 @@ function SingleEvent(props) {
                 </div>
                 {
                   wish.owner[0]._id===userId || eventOwnerId===userId ?
-                  <div className="deletigWish"> <img src="/delete.png" onClick={e=>{
+                  <div className="deletigWish"> <img alt="" src="/delete.png" onClick={e=>{
                     deleteWish(localStorage.getItem("user"),wish._id).then (res=>res.json())
                     .then (data=>{
                       console.groupCollapsed(data)
@@ -128,7 +127,7 @@ function SingleEvent(props) {
       .catch((error) => {
         console.log(error);
       });
-  }, [eventWishes]);
+  }, [eventWishes,eventOwnerId,props.match.params.eventId,userId]);
 
   if (idFound === "checking") {
     return (
@@ -203,6 +202,7 @@ function SingleEvent(props) {
         </div>
         <div className="addWishIconDiv">
           <img
+          alt=""
             src="/sign-add-icon.png"
             onClick={(e) => {
               setAddWishClicked(true);

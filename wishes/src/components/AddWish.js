@@ -50,7 +50,6 @@ function AddWish({ setAddWishClicked, eventId, setEventWishes,setWishesSuggestio
           value={wish}
           onChange={(e) => setWish(e.target.value)}
           className="wish"
-          className="wish"
           required
         >
           {" "}

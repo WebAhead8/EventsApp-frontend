@@ -78,13 +78,16 @@ function EditEvents({
       <div className="deleteDiv">
         <img
           src="/exit.png"
+          alt=""
           onClick={(e) => {
             setEditEventClicked(false);
+
           }}
         />
 
         <img
           src="/delete.png"
+          alt=""
           onClick={(e) => {
             setDeleteChecked(true);
           }}
@@ -138,6 +141,7 @@ function EditEvents({
       />
       <div className="deleteDiv">
         <img
+            alt=""
           src="/save.png"
           onClick={(e) => {
             const obj = {
