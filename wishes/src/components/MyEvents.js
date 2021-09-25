@@ -16,6 +16,7 @@ function MyEvents(props) {
   const [eventDescription, setEventDescription] = React.useState("");
   const [eventId, seteventId] = React.useState("");
   const [editEventClicked, setEditEventClicked] = React.useState(false);
+  const [eventImage, setEventImage] = React.useState("https://blog.walls.io/wp-content/uploads/2017/02/ideas-for-making-event-more-social.jpg");
 
   const history = useHistory();
   const [myEvents, setMyEvents] = React.useState([]);
@@ -65,6 +66,7 @@ function MyEvents(props) {
                 setEventLocation(event.location);
                 setEventDescription(event.description);
                 seteventId(event._id);
+                if(event.image) {setEventImage(event.image)}
               }}
             >
               <EditIcon className="" />
@@ -138,6 +140,8 @@ function MyEvents(props) {
           setEventLocation={setEventLocation}
           eventDescription={eventDescription}
           setEventDescription={setEventDescription}
+          eventImage={eventImage}
+          setEventImage={setEventImage}
           eventDate={eventDate}
           setEventTitle={setEventTitle}
           eventId={eventId}

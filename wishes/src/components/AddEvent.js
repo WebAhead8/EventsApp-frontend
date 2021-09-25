@@ -5,10 +5,11 @@ import "../Style/AddEvent.css";
 import Navbar from "./NavBar";
 import { AddEventFetch } from "../Fetches/addEventFetch";
 import { useHistory } from "react-router-dom";
+const axios = require('axios');
 
 function AddEvent() {
   const [Title, setTitle] = useState("");
-  const [Description, setDescription] = useState("");
+  const [Description, setDescription] = useState(""); 
   const [Date, setDate] = useState("24/05/2017");
   const [Location, setLocation] = useState("");
   const [Image, setImage] = useState("");
@@ -73,10 +74,11 @@ function AddEvent() {
       });
       const data = new FormData();
       data.append('file', Image);
-      axios.post('/upload', data)
-      .then((res) => {
-        this.setState({ photos: [res.data, ...this.state.photos] });
-      });
+      axios.post('http://localhost:4000/upload', data)
+
+      .then(data=>{
+        console.log(data)
+      })
   };
 
   return (

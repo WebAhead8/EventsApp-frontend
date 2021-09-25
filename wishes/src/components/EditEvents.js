@@ -19,6 +19,8 @@ function EditEvents({
   eventId,
   setEditEventClicked,
   setMyEvents,
+  eventImage,
+  setEventImage,
 }) {
   const fetchEvents = () => {
     getMyEvents(localStorage.getItem("user"))
@@ -139,6 +141,15 @@ function EditEvents({
           setEventDescription(e.target.value);
         }}
       />
+
+      <input 
+      className="imageInput"
+      value={eventImage}onChange={e=>{
+        setEventImage(e.target.value)
+      }}
+      />
+      <label>Image</label>
+
       <div className="deleteDiv">
         <img
             alt=""
@@ -150,6 +161,7 @@ function EditEvents({
               date: eventDate,
               location: eventLocation,
               id: eventId,
+              image:eventImage
             };
             setLoading(true);
 
