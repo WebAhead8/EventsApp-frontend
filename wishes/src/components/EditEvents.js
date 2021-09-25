@@ -148,7 +148,6 @@ function EditEvents({
         setEventImage(e.target.value)
       }}
       />
-      <label>Image</label>
 
       <div className="deleteDiv">
         <img
