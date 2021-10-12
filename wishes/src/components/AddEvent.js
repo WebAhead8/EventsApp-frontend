@@ -5,7 +5,6 @@ import "../Style/AddEvent.css";
 import Navbar from "./NavBar";
 import { AddEventFetch } from "../Fetches/addEventFetch";
 import { useHistory } from "react-router-dom";
-const axios = require('axios');
 
 function AddEvent() {
   const [Title, setTitle] = useState("");
@@ -59,6 +58,7 @@ function AddEvent() {
 
   const addEventHandler = (e) => {
     e.preventDefault();
+    console.log(Image)
     AddEventFetch(
       localStorage.getItem("user"),
       Title,
@@ -72,13 +72,7 @@ function AddEvent() {
       .then((data) => {
         history.push("/events");
       });
-      const data = new FormData();
-      data.append('file', Image);
-      axios.post('http://localhost:4000/upload', data)
-
-      .then(data=>{
-        console.log(data)
-      })
+  
   };
 
   return (
@@ -143,16 +137,16 @@ function AddEvent() {
 
         <label htmlFor="Image">Image : </label>
         <span className="img">
-          {/* <input
+          <input
             type="text"
             onChange={(e) => setImage(e.target.value)}
             value={Image}
             placeHolder="Enter the Image"
             className="imgInput"
-          ></input> */}
-          <input type="file" name="file" onChange={event=>{
+          ></input>
+          {/* <input type="file" name="file" onChange={event=>{
             setImage(event.target.files[0])
-          }}/>
+          }}/> */}
         </span>
         <input
           type="submit"

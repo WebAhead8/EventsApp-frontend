@@ -9,7 +9,7 @@ export const AddEventFetch = (auth, Title, Description, Date, Location, Category
       'Content-Type': 'application/json',
       authentication: auth
     },
-    body: JSON.stringify({ title: Title, description: Description, date: Date, location: Location, category: Category,image:"xj,jnxdk" })
+    body: JSON.stringify({ title: Title, description: Description, date: Date, location: Location, category: Category,image:Image })
   };
 
   return fetch(process.env.REACT_APP_SERVER_URL + "/addEvent", options);
